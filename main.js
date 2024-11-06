@@ -12,6 +12,26 @@ function createWindow() {
     });
 
     mainWindow.loadFile('index.html'); // Load the HTML for your chat interface
+
+    // Requesting data from the server for initialization of the content
+    const net = require('net');
+    PORT = 65433
+    IP = '192.168.1.66'
+    const client = new net.Socket();
+    client.connect(PORT, IP, () => {    
+        client.write('[[-INIT-]]');
+
+    });
+    client.on('error', (error) => {
+        console.error('Connection error:', error); 
+    });
+
+    // Listen for data from the server
+    client.on('data', (data) => {
+        console.log('Received from server:', data.toString());
+        mainWindow.webContents.send('init-content', data.toString());
+    });
+
 }
 
 app.whenReady().then(createWindow);

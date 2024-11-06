@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electron Chat Window</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div>
         <h2>Chat Window</h2>
-        <!-- Your chat interface goes here -->
+        <div id="chatFeed">
+
+        </div>
+        <div>
+            <textarea placeholder="Enter your question" id="prompt-textarea"></textarea>
+            <button id="submit-prompt">Prompt</button>
+        </div>
     </div>
     <button id="toggle-button">Extend</button>
     <button id="ping-server">Ping Server</button>
